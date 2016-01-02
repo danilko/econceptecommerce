@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -29,24 +28,21 @@
 
 package com.controller.config;
 
-import java.util.Arrays;
-
-import javax.ws.rs.core.Application;
-import javax.ws.rs.ext.RuntimeDelegate;
-
+import com.controller.resource.PaymentResource;
+import com.controller.resource.ProductResource;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.controller.resource.PaymentResource;
-import com.controller.resource.ProductResource;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
-import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.ext.RuntimeDelegate;
+import java.util.Arrays;
 
 @Configuration
 public class ResourceConfig {

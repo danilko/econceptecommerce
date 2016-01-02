@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -30,100 +29,20 @@
 
 package com.controller.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.controller.model.Product;
 import com.controller.model.ProductSpecification;
+import org.springframework.stereotype.Repository;
 
-public class ProductDAO {
+import java.util.List;
 
-    public static List<Product> getAllProducts() {
-        List<Product> productList = new ArrayList<Product>();
-        Product product = new Product();
-        product.setProductSerialNumber("ua-100");
-        product.setProductPrice(200.0);
-        product.setProductName("Unique Audio Power Noise Cancellator");
-        product.setProductDescription(
-                "Unique Audio Power Noise Cancellator Donec id elit non mi porta gravida at eget metus. Fuscedapibus, tellus ac cursus commodo, tortor mauris condimentumnibh, ut fermentum massa justo sit amet risus. Etiam porta semmalesuada magna mollis euismod. Donec sed odio dui.");
+@Repository
+public interface ProductDAO {
 
-        List<String> productImageList = new ArrayList<String>();
-        productImageList.add("img/testimage.jpg");
-        product.setProudctImageList(productImageList);
+    public List<Product> getAllProducts();
 
-        List<ProductSpecification> productSpecifications = new ArrayList<ProductSpecification>();
+    public Product getProductByProductSerialNumber(String productSerialNumber);
 
-        ProductSpecification productSpecification = new ProductSpecification();
-        productSpecification.setProductSerialNumber(product.getProductSerialNumber());
-        productSpecification.setProductSpecificationName("Dimension");
-        productSpecification.setProductSpecificationValue("2 in x 2 in x 2 in");
+    public void createProduct(Product product);
 
-        productSpecifications.add(productSpecification);
-
-        productSpecification = new ProductSpecification();
-        productSpecification.setProductSerialNumber(product.getProductSerialNumber());
-        productSpecification.setProductSpecificationName("Weight");
-        productSpecification.setProductSpecificationValue("1 lb");
-
-        productSpecifications.add(productSpecification);
-
-        product.setProductSpecificationList(productSpecifications);
-
-        productList.add(product);
-
-        product = new Product();
-        product.setProductSerialNumber("ua-200");
-        product.setProductPrice(100.0);
-
-        product.setProductName("Unique Audio Power Cable");
-        product.setProductDescription(
-                "Unique Audio Power Cable Eliminater Donec id elit non mi porta gravida at eget metus. Fuscedapibus, tellus ac cursus commodo, tortor mauris condimentumnibh, ut fermentum massa justo sit amet risus. Etiam porta semmalesuada magna mollis euismod. Donec sed odio dui.");
-
-        productImageList = new ArrayList<String>();
-        productImageList.add("img/testimage.jpg");
-        product.setProudctImageList(productImageList);
-
-        productSpecifications = new ArrayList<ProductSpecification>();
-
-        productSpecification = new ProductSpecification();
-        productSpecification.setProductSerialNumber(product.getProductSerialNumber());
-        productSpecification.setProductSpecificationName("Leghth");
-        productSpecification.setProductSpecificationValue("12 in");
-
-        productSpecifications.add(productSpecification);
-
-        productSpecification = new ProductSpecification();
-        productSpecification.setProductSerialNumber(product.getProductSerialNumber());
-        productSpecification.setProductSpecificationName("Weight");
-        productSpecification.setProductSpecificationValue("2 lb");
-
-        productSpecifications.add(productSpecification);
-
-        productSpecification = new ProductSpecification();
-        productSpecification.setProductSerialNumber(product.getProductSerialNumber());
-        productSpecification.setProductSpecificationName("Input");
-        productSpecification.setProductSpecificationValue("US Standard Power Port");
-
-        productSpecifications.add(productSpecification);
-
-        product.setProductSpecificationList(productSpecifications);
-
-        productList.add(product);
-
-        return productList;
-    }
-
-    public static Product getProductByProductSerialNumber(String productSerialNumber) {
-        Product product = null;
-
-        List<Product> productList = ProductDAO.getAllProducts();
-
-        for (Product currentProduct : productList) {
-            if (productSerialNumber.equalsIgnoreCase(currentProduct.getProductSerialNumber())) {
-                product = currentProduct;
-            }
-        } // for
-
-        return product;
-    }
+    public void deleteProductByProductSerialNumber(String productSerialNumber);
 }

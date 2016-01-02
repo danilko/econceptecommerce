@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -29,41 +28,22 @@
 
 package com.controller.payment;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
+import com.controller.dao.ProductDAO;
+import com.controller.model.*;
+import com.controller.shipment.ProductShipmentClient;
+import com.paypal.api.payments.*;
+import com.paypal.core.ConfigManager;
+import com.paypal.core.rest.OAuthTokenCredential;
+import com.paypal.core.rest.PayPalRESTException;
+import com.shippo.exception.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.controller.dao.ProductDAO;
-import com.controller.model.Product;
-import com.controller.model.ProductShipment;
-import com.controller.model.ProductShipmentAddress;
-import com.controller.model.ProductShoppingCart;
-import com.controller.model.ProductShoppingCartItem;
-import com.controller.shipment.ProductShipmentClient;
-import com.paypal.api.payments.Amount;
-import com.paypal.api.payments.AmountDetails;
-import com.paypal.api.payments.Item;
-import com.paypal.api.payments.ItemList;
-import com.paypal.api.payments.Link;
-import com.paypal.api.payments.Payer;
-import com.paypal.api.payments.Payment;
-import com.paypal.api.payments.PaymentExecution;
-import com.paypal.api.payments.RedirectUrls;
-import com.paypal.api.payments.ShippingAddress;
-import com.paypal.api.payments.Transaction;
-import com.paypal.core.ConfigManager;
-import com.paypal.core.rest.OAuthTokenCredential;
-import com.paypal.core.rest.PayPalRESTException;
-import com.shippo.exception.APIConnectionException;
-import com.shippo.exception.APIException;
-import com.shippo.exception.AuthenticationException;
-import com.shippo.exception.InvalidRequestException;
-import com.shippo.exception.RequestTimeoutException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class PaymentClient {
 

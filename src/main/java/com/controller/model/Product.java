@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -29,13 +28,16 @@
 
 package com.controller.model;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Product implements Serializable {
 
     /**
@@ -44,6 +46,7 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 4820385498279685293L;
 
     @JsonProperty("productSerialNumber")
+    @Id
     private String productSerialNumber;
     @JsonProperty("productName")
     private String productName;
@@ -55,6 +58,7 @@ public class Product implements Serializable {
 
     @JsonProperty("productSpecificationList")
     private List<ProductSpecification> productSpecificationList;
+
     @JsonProperty("productImageList")
     private List<String> productImageList;
 

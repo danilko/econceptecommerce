@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -28,24 +27,16 @@
  */
 package com.controller.shipment;
 
+import com.controller.model.ProductShipment;
+import com.controller.model.ProductShipmentAddress;
+import com.shippo.Shippo;
+import com.shippo.exception.*;
+import com.shippo.model.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.controller.model.ProductShipment;
-import com.controller.model.ProductShipmentAddress;
-import com.shippo.Shippo;
-import com.shippo.exception.APIConnectionException;
-import com.shippo.exception.APIException;
-import com.shippo.exception.AuthenticationException;
-import com.shippo.exception.InvalidRequestException;
-import com.shippo.exception.RequestTimeoutException;
-import com.shippo.model.Address;
-import com.shippo.model.Parcel;
-import com.shippo.model.Rate;
-import com.shippo.model.RateCollection;
-import com.shippo.model.Shipment;
 
 public class ProductShipmentClient {
 

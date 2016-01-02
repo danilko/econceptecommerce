@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -29,11 +28,13 @@
 
 package com.controller.model;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Entity;
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class ProductShoppingCartItem implements Serializable {
     /**
      *

@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -28,39 +27,29 @@
  */
 package com.controller.resource;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.controller.model.ProductShipmentAddress;
 import com.controller.model.ProductShoppingCart;
 import com.controller.payment.PaymentClient;
 import com.controller.shipment.ProductShipmentClient;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
 
 @Api(value = "Payment Service")
 @Produces("application/json; charset=UTF-8")

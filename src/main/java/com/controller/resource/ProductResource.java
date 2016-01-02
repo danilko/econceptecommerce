@@ -1,4 +1,3 @@
-
 /**
  * The MIT License (MIT)
  * <p/>
@@ -29,24 +28,27 @@
 
 package com.controller.resource;
 
+import com.controller.dao.ProductDAO;
+import com.controller.model.Product;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import com.controller.dao.ProductDAO;
-import com.controller.model.Product;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
 @Api(value = "Product Service")
 @Produces("application/json; charset=UTF-8")
 @Path("/product")
 public class ProductResource {
+
+    @Inject
+    private ProductDAO productDAO;
 
     @GET
     @Path("/_all")
@@ -55,7 +57,7 @@ public class ProductResource {
     })
     public Response getProducts() {
 
-        return Response.ok().entity(ProductDAO.getAllProducts()).build();
+        return Response.ok().entity(productDAO.getAllProducts()).build();
     }
 
     @GET
@@ -65,6 +67,6 @@ public class ProductResource {
     })
     public Response getProductBySerialNumber(@PathParam("productSerialNumber") String productSerialNumber) {
 
-        return Response.ok().entity(ProductDAO.getProductByProductSerialNumber(productSerialNumber)).build();
+        return Response.ok().entity(productDAO.getProductByProductSerialNumber(productSerialNumber)).build();
     }
 }
