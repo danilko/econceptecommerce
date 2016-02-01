@@ -33,7 +33,6 @@ import com.controller.model.Product;
 import com.controller.model.ProductSpecification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

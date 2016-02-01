@@ -40,12 +40,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class PaymentClient {
+
+    @Inject
+    ProductDAO  productDAO;
 
     private static Logger LOGGER = LoggerFactory.getLogger(PaymentClient.class);
 
@@ -123,7 +127,7 @@ public class PaymentClient {
 
         List<Item> shoppingCartItemList = new ArrayList<Item>();
         for (ProductShoppingCartItem productShoppingCartItem : items) {
-            Product product = ProductDAO
+            Product product = productDAO
                     .getProductByProductSerialNumber(productShoppingCartItem.getProductSerialNumber());
             total = total
                     + Double.parseDouble(productShoppingCartItem.getProductQuantity()) * product.getProductPrice();

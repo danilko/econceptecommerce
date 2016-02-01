@@ -41,6 +41,7 @@ public class MainWebApplicationInitizer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.scan("com.controller.config");
 

@@ -17,6 +17,8 @@ About
 ============================
 Ecommerce Website Sample integrate with Paypal API, Shippfy API and Google reCaptcha with Jquery and Bootstrap Frontend
 
+It utilize Spring, HikariCP and DataNeclus for backend PostgresqlRDBMS Integration
+
 Please note this is a sample, it is by no means a complete solution with any security implication
 
 Compile
@@ -40,4 +42,14 @@ PAYPAL_API_CLIENT_ID
 PAYPAL_API_CLIENT_SECRET
 
 SHIPPO_CLIENT_API_KEY
+```
+
+PostgreSQL 9.2 or up needs to be present with following values or one will need to change the default settings in application.properties within:
+
+WAR/classes/application.properties
+
+A sample docker container that fulfill can be build with
+
+```
+docker run -p 127.0.0.1:5432:5432 -d --name postgresql stackbrew/postgres:latest
 ```

@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
- * <p/>
+ * <p>
  * Copyright (c) 2013 Kai-Ting (Danil) Ko
- * <p/>
+ * <p>
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the "Software"),
@@ -12,10 +12,10 @@
  * copies of the Software, and to permit persons to whom
  * the Software is furnished to do so, subject to the
  * following conditions:
- * <p/>
+ * <p>
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions of the Software.
- * <p/>
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
  * OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
@@ -30,7 +30,12 @@ package com.controller.config;
 
 import com.controller.dao.ProductDAO;
 import com.controller.dao.com.controller.dao.impl.spring.SpringProductDAO;
+import com.controller.dao.com.controller.dao.impl.spring.SpringProductRowMapper;
+import com.controller.dao.com.controller.dao.impl.spring.SpringProductSpecificationRowMapper;
 import com.zaxxer.hikari.HikariDataSource;
+import liquibase.integration.spring.SpringLiquibase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -39,18 +44,18 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
 @PropertySource(value = "classpath:application.properties")
 public class DAOConfig {
+
     // Inject PropertySource into environment instance
     @Inject
     private Environment mEnvironment;
@@ -58,25 +63,44 @@ public class DAOConfig {
     @Bean
     public ProductDAO productDAO() {
         return new SpringProductDAO();
-    }  // AnswerDao getProductDao
+    }
+
+    @Bean
+    public SpringProductRowMapper springProductRowMapper() {
+        return new SpringProductRowMapper();
+    }
+
+    @Bean
+    public SpringProductSpecificationRowMapper springProductSpecificationRowMapper() {
+        return new SpringProductSpecificationRowMapper();
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean lBean = new LocalContainerEntityManagerFactoryBean();
 
-        lBean.setDataSource(getDataSource());
+        lBean.setDataSource(dataSource());
 
-        lBean.setPackagesToScan(new String[]{"com.controller.dao", "com.controller.model"});
+        lBean.setPersistenceProviderClass(org.datanucleus.api.jpa.PersistenceProviderImpl.class);
+
+        lBean.setPackagesToScan(new String[]{"com.controller.dao.impl.spring"});
 
         lBean.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
 
+        Properties japProperties = new Properties();
+
+        japProperties.put("javax.persistence.jdbc.driver",
+                mEnvironment.getProperty("DATABASE_DRIVER_NAME"));
+
+        lBean.setJpaProperties(japProperties);
+        lBean.afterPropertiesSet();
         return lBean;
     }
 
+
     @Bean
-    public JdbcTemplate jdbcTemplate()
-    {
-        return new JdbcTemplate();
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 
     @Bean
@@ -87,15 +111,25 @@ public class DAOConfig {
     }
 
     @Bean
-    public DataSource getDataSource() {
+    public HikariDataSource dataSource() {
         HikariDataSource lDataSource = new HikariDataSource();
-        lDataSource.setDataSourceClassName(mEnvironment.getProperty("jdbc.driverClassName"));
-        lDataSource.setJdbcUrl(mEnvironment.getProperty("jdbc.url"));
-        lDataSource.setUsername(mEnvironment.getProperty("jdbc.username"));
-        lDataSource.setPassword(mEnvironment.getProperty("jdbc.password"));
+        lDataSource.setDriverClassName(mEnvironment.getProperty("DATABASE_DRIVER_NAME"));
+        lDataSource.setJdbcUrl(mEnvironment.getProperty("DATABASE_DRIVER_URL"));
+        lDataSource.setUsername(mEnvironment.getProperty("DATABASE_DRIVER_USERNAME"));
+        lDataSource.setPassword(mEnvironment.getProperty("DATABASE_DRIVER_PASSWORD"));
 
         return lDataSource;
     }  // DriverManagerDataSource getDataSource
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+
+        liquibase.setDataSource(dataSource());
+        liquibase.setChangeLog("classpath:db.changelog-sample.json");
+
+        return liquibase;
+    }
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {

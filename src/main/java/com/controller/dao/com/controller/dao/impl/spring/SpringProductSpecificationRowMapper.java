@@ -12,7 +12,7 @@ public class SpringProductSpecificationRowMapper implements RowMapper {
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         ProductSpecification productSpecification = new ProductSpecification();
 
-        productSpecification.setProductSerialNumber(rs.getString("product_serialnumber"));
+        productSpecification.setProductSerialNumber(rs.getString("product_serial_number"));
         productSpecification.setProductSpecificationValue(rs.getString("product_specification_value"));
         productSpecification.setProductSpecificationName(rs.getString("product_specification_name"));
 

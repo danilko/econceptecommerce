@@ -37,7 +37,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 public class Product implements Serializable {
 
     /**

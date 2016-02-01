@@ -35,7 +35,6 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 public class ProductShipment implements Serializable {
     /**
      *

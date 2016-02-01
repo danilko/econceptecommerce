@@ -31,13 +31,12 @@ package com.controller.model;
 import javax.persistence.Entity;
 import java.util.List;
 
-@Entity
 public class ProductShoppingCart {
 
-    String productShipmentReferenceId;
-    String productShipmentRatingReferenceId;
+    private String productShipmentReferenceId;
+    private String productShipmentRatingReferenceId;
 
-    List<ProductShoppingCartItem> productShoppingCartList;
+    private  List<ProductShoppingCartItem> productShoppingCartList;
 
     public String getProductShipmentRatingReferenceId() {
         return productShipmentRatingReferenceId;

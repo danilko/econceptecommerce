@@ -31,16 +31,19 @@ package com.controller.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 public class ProductShipmentAddress implements Serializable {
 
     /**
      *
      */
     private static final long serialVersionUID = -2629825243772253526L;
+
+    @Id
+    private String address_id;
     private String addressName;
     private String addressCompany;
     private String addressStreet1;
@@ -51,6 +54,14 @@ public class ProductShipmentAddress implements Serializable {
     private String addressCountry;
     private String addressEmail;
     private String addressState;
+
+    public String getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
+    }
 
     public String getAddressName() {
         return addressName;
@@ -125,82 +136,45 @@ public class ProductShipmentAddress implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((addressCity == null) ? 0 : addressCity.hashCode());
-        result = prime * result + ((addressCompany == null) ? 0 : addressCompany.hashCode());
-        result = prime * result + ((addressCountry == null) ? 0 : addressCountry.hashCode());
-        result = prime * result + ((addressEmail == null) ? 0 : addressEmail.hashCode());
-        result = prime * result + ((addressName == null) ? 0 : addressName.hashCode());
-        result = prime * result + ((addressState == null) ? 0 : addressState.hashCode());
-        result = prime * result + ((addressStreet1 == null) ? 0 : addressStreet1.hashCode());
-        result = prime * result + ((addressStreet2 == null) ? 0 : addressStreet2.hashCode());
-        result = prime * result + ((addressStreetNo == null) ? 0 : addressStreetNo.hashCode());
-        result = prime * result + ((addressZip == null) ? 0 : addressZip.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductShipmentAddress that = (ProductShipmentAddress) o;
+
+        if (address_id != null ? !address_id.equals(that.address_id) : that.address_id != null) return false;
+        if (addressName != null ? !addressName.equals(that.addressName) : that.addressName != null) return false;
+        if (addressCompany != null ? !addressCompany.equals(that.addressCompany) : that.addressCompany != null)
+            return false;
+        if (addressStreet1 != null ? !addressStreet1.equals(that.addressStreet1) : that.addressStreet1 != null)
+            return false;
+        if (addressStreet2 != null ? !addressStreet2.equals(that.addressStreet2) : that.addressStreet2 != null)
+            return false;
+        if (addressStreetNo != null ? !addressStreetNo.equals(that.addressStreetNo) : that.addressStreetNo != null)
+            return false;
+        if (addressCity != null ? !addressCity.equals(that.addressCity) : that.addressCity != null) return false;
+        if (addressZip != null ? !addressZip.equals(that.addressZip) : that.addressZip != null) return false;
+        if (addressCountry != null ? !addressCountry.equals(that.addressCountry) : that.addressCountry != null)
+            return false;
+        if (addressEmail != null ? !addressEmail.equals(that.addressEmail) : that.addressEmail != null) return false;
+        return addressState != null ? addressState.equals(that.addressState) : that.addressState == null;
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!(obj instanceof ProductShipmentAddress))
-            return false;
-        ProductShipmentAddress other = (ProductShipmentAddress) obj;
-        if (addressCity == null) {
-            if (other.addressCity != null)
-                return false;
-        } else if (!addressCity.equals(other.addressCity))
-            return false;
-        if (addressCompany == null) {
-            if (other.addressCompany != null)
-                return false;
-        } else if (!addressCompany.equals(other.addressCompany))
-            return false;
-        if (addressCountry == null) {
-            if (other.addressCountry != null)
-                return false;
-        } else if (!addressCountry.equals(other.addressCountry))
-            return false;
-        if (addressEmail == null) {
-            if (other.addressEmail != null)
-                return false;
-        } else if (!addressEmail.equals(other.addressEmail))
-            return false;
-        if (addressName == null) {
-            if (other.addressName != null)
-                return false;
-        } else if (!addressName.equals(other.addressName))
-            return false;
-        if (addressState == null) {
-            if (other.addressState != null)
-                return false;
-        } else if (!addressState.equals(other.addressState))
-            return false;
-        if (addressStreet1 == null) {
-            if (other.addressStreet1 != null)
-                return false;
-        } else if (!addressStreet1.equals(other.addressStreet1))
-            return false;
-        if (addressStreet2 == null) {
-            if (other.addressStreet2 != null)
-                return false;
-        } else if (!addressStreet2.equals(other.addressStreet2))
-            return false;
-        if (addressStreetNo == null) {
-            if (other.addressStreetNo != null)
-                return false;
-        } else if (!addressStreetNo.equals(other.addressStreetNo))
-            return false;
-        if (addressZip == null) {
-            if (other.addressZip != null)
-                return false;
-        } else if (!addressZip.equals(other.addressZip))
-            return false;
-        return true;
+    public int hashCode() {
+        int result = address_id != null ? address_id.hashCode() : 0;
+        result = 31 * result + (addressName != null ? addressName.hashCode() : 0);
+        result = 31 * result + (addressCompany != null ? addressCompany.hashCode() : 0);
+        result = 31 * result + (addressStreet1 != null ? addressStreet1.hashCode() : 0);
+        result = 31 * result + (addressStreet2 != null ? addressStreet2.hashCode() : 0);
+        result = 31 * result + (addressStreetNo != null ? addressStreetNo.hashCode() : 0);
+        result = 31 * result + (addressCity != null ? addressCity.hashCode() : 0);
+        result = 31 * result + (addressZip != null ? addressZip.hashCode() : 0);
+        result = 31 * result + (addressCountry != null ? addressCountry.hashCode() : 0);
+        result = 31 * result + (addressEmail != null ? addressEmail.hashCode() : 0);
+        result = 31 * result + (addressState != null ? addressState.hashCode() : 0);
+        return result;
     }
 
     public String getAddressZip() {

@@ -1,0 +1,410 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "1",
+        "author": "danilko",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "type": "VARCHAR(200)",
+                    "constraints": {
+                      "primaryKey": true,
+                      "nullable": false,
+                      "unique" : true
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_name",
+                    "type": "VARCHAR(4000)",
+                    "constraints": {
+                      "nullable": false,
+                      "unique" : true
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_description",
+                    "type": "VARCHAR(4000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price",
+                    "type": "FLOAT(8)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price_unit",
+                    "type": "VARCHAR(10)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "createTable": {
+              "tableName": "product_specification",
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "type": "VARCHAR(200)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "type": "VARCHAR(4000)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "type": "VARCHAR(4000)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseColumnNames": "product_serial_number",
+              "baseTableName": "product_specification",
+              "constraintName": "fk_product_product_specification",
+              "deferrable": true,
+              "initiallyDeferred": true,
+              "onDelete": "CASCADE",
+              "onUpdate": "RESTRICT",
+              "referencedColumnNames": "product_serial_number",
+              "referencedTableName": "product"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2",
+        "author": "danilko",
+        "changes": [
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-100"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_name",
+                    "value": "Unique Audio Power Noise Cancellator"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_description",
+                    "value": "Unnique Audio Power Noise Cancellator Donec id elit non mi porta gravida at eget metus. Fuscedapibus, tellus ac cursus commodo, tortor mauris condimentumnibh, ut fermentum massa justo sit amet risus. Etiam porta semmalesuada magna mollis euismod. Donec sed odio dui."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price",
+                    "value": "200.00"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price_unit",
+                    "value": "USD"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-200"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_name",
+                    "value": "Unique Audio Power Cable Eliminator"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_description",
+                    "value": "Unique Audio Power Cable Eliminator Donec id elit non mi porta gravida at eget metus. Fuscedapibus, tellus ac cursus commodo, tortor mauris condimentumnibh, ut fermentum massa justo sit amet risus. Etiam porta semmalesuada magna mollis euismod. Donec sed odio dui."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price",
+                    "value": "500.00"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_price_unit",
+                    "value": "USD"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-100"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Dimension"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "2 in x 2 in x 2 in"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-100"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Weight"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "5 lb"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-100"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Input/Output"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "US Standard Power Port"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-100"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Image"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "img/testimage1.jpg"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-200"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Length"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "2 in"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-200"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Weight"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "2 lb"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-200"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Input/Output"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "US Standard Power Port"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          },
+          {
+            "insert": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "product_serial_number",
+                    "value": "ua-200"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_name",
+                    "value": "Image"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "product_specification_value",
+                    "value": "img/testimage2.jpg"
+                  }
+                }
+              ],
+              "dbms": "postgresql",
+              "schemaName": "public",
+              "tableName": "product_specification"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

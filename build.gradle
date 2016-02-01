@@ -92,12 +92,20 @@ dependencies {
 
     // Persistence
     compile 'org.ow2.asm:asm:4.0'
-    compile "org.datanucleus:datanucleus-api-jpa:4.1.0-release"
-    compile "org.datanucleus:datanucleus-api-jdo:4.1.0-release"
+
+    compile "org.datanucleus:javax.persistence:2.1.2"
     compile "org.datanucleus:datanucleus-core:4.1.0-release"
+    compile "org.datanucleus:datanucleus-api-jpa:4.1.0-release"
+    compile "org.datanucleus:datanucleus-rdbms:4.1.0-release"
+
     compile "org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.0"
     compile "javax.jdo:jdo-api:3.0.1"
     compile "javax.transaction:jta:1.1"
+
+    compile "org.liquibase:liquibase-core:3.4.2"
+    compile "org.yaml:snakeyaml:1.12"
+
+    compile "org.postgresql:postgresql:9.4.1207.jre7"
 
     compile "com.zaxxer:HikariCP:2.4.3"
 

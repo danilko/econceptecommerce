@@ -35,7 +35,6 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 public class ProductSpecification implements Serializable {
 
 
@@ -44,12 +43,8 @@ public class ProductSpecification implements Serializable {
      */
     private static final long serialVersionUID = 3075294014446278441L;
 
-    @JsonProperty("productSerialNumber")
     private String productSerialNumber;
-
-    @JsonProperty("productSpecificationName")
     private String productSpecificationName;
-    @JsonProperty("productSpecificationValue")
     private String productSpecificationValue;
 
     public String getProductSerialNumber() {

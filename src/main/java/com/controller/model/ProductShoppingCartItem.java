@@ -34,14 +34,13 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 public class ProductShoppingCartItem implements Serializable {
     /**
      *
      */
     private static final long serialVersionUID = 4253948803382976436L;
-    String productSerialNumber;
-    String productQuantity;
+    private String productSerialNumber;
+    private String productQuantity;
 
     public String getProductSerialNumber() {
         return productSerialNumber;
